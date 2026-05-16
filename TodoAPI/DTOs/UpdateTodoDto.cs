@@ -12,6 +12,8 @@ namespace TodoAPI.DTOs
         public string Description { get; set; }
         public bool IsCompleted { get; set; }
 
+        public DateTime? DueDate { get; set; }
+
         [Required]
         [MaxLength(10)]
         public string Priority { get; set; } // Low, Medium, Hig

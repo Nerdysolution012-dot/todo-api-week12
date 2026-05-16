@@ -67,40 +67,40 @@ namespace TodoAPI.Controllers
             return Ok(response);
         }
 
-        //        [HttpPost]
-        //public async Task<ActionResult<TodoResponseDto>> CreateTodo(CreateTodoDto dto)
-        //        {
-        //            if (!ModelState.IsValid)
-        //            {
-        //                return BadRequest(ModelState);
-        //            }
+        [HttpPost]
+        public async Task<ActionResult<TodoResponseDto>> CreateTodo(CreateTodoDto dto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-        //            var todo = new TodoItem
-        //            {
-        //                Title = dto.Title,
-        //                Description = dto.Description,
-        //                DueDate = dto.DueDate,
-        //                Priority = dto.Priority ?? "Medium",
-        //                CreatedAt = DateTime.UtcNow,
-        //                IsCompleted = false
-        //            };
+            var todo = new TodoItem
+            {
+                Title = dto.Title,
+                Description = dto.Description,
+                DueDate = dto.DueDate,
+                Priority = dto.Priority ?? "Medium",
+                CreatedAt = DateTime.UtcNow,
+                IsCompleted = false
+            };
 
-        //            _context.TodoItems.Add(todo);
-        //            await _context.SaveChangesAsync();
+            _context.TodoItems.Add(todo);
+            await _context.SaveChangesAsync();
 
-        //            var response = new TodoResponseDto
-        //            {
-        //                Id = todo.Id,
-        //                Title = todo.Title,
-        //                Description = todo.Description,
-        //                IsCompleted = todo.IsCompleted,
-        //                CreatedAt = todo.CreatedAt,
-        //                DueDate = todo.DueDate,
-        //                Priority = todo.Priority
-        //            };
+            var response = new TodoResponseDto
+            {
+                Id = todo.Id,
+                Title = todo.Title,
+                Description = todo.Description,
+                IsCompleted = todo.IsCompleted,
+                CreatedAt = todo.CreatedAt,
+                DueDate = todo.DueDate,
+                Priority = todo.Priority
+            };
 
-        //            return CreatedAtAction(nameof(GetTodo), new { id = todo.Id }, response);
-        //        }
+            return CreatedAtAction(nameof(GetTodo), new { id = todo.Id }, response);
+        }
 
         //        [HttpPut("{id}")]
         //        public async Task<ActionResult<TodoResponseDto>> UpdateTodo(int id, UpdateTodoDto dto)
