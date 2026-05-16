@@ -144,25 +144,25 @@ namespace TodoAPI.Controllers
             return Ok(response);
         }
 
-        //        [HttpDelete("{id}")]
-        //        public async Task<ActionResult> DeleteTodo(int id)
-        //        {
-        //            var todo = await _context.TodoItems.FindAsync(id);
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteTodo(int id)
+        {
+            var todo = await _context.TodoItems.FindAsync(id);
 
-        //            if (todo == null)
-        //            {
-        //                return NotFound(new ErrorResponse
-        //                {
-        //                    StatusCode = 404,
-        //                    Message = $"TODO with ID {id} not found",
-        //                    Timestamp = DateTime.UtcNow
-        //                });
-        //            }
+            if (todo == null)
+            {
+                return NotFound(new ErrorResponse
+                {
+                    StatusCode = 404,
+                    Message = $"TODO with ID {id} not found",
+                    Timestamp = DateTime.UtcNow
+                });
+            }
 
-        //            _context.TodoItems.Remove(todo);
-        //            await _context.SaveChangesAsync();
+            _context.TodoItems.Remove(todo);
+            await _context.SaveChangesAsync();
 
-        //            return NoContent();
-        //        }
+            return NoContent();
+        }
     }
 }
