@@ -102,47 +102,47 @@ namespace TodoAPI.Controllers
             return CreatedAtAction(nameof(GetTodo), new { id = todo.Id }, response);
         }
 
-        //        [HttpPut("{id}")]
-        //        public async Task<ActionResult<TodoResponseDto>> UpdateTodo(int id, UpdateTodoDto dto)
-        //        {
-        //            if (!ModelState.IsValid)
-        //            {
-        //                return BadRequest(ModelState);
-        //            }
+        [HttpPut("{id}")]
+        public async Task<ActionResult<TodoResponseDto>> UpdateTodo(int id, UpdateTodoDto dto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-        //            var todo = await _context.TodoItems.FindAsync(id);
+            var todo = await _context.TodoItems.FindAsync(id);
 
-        //            if (todo == null)
-        //            {
-        //                return NotFound(new ErrorResponse
-        //                {
-        //                    StatusCode = 404,
-        //                    Message = $"TODO with ID {id} not found",
-        //                    Timestamp = DateTime.UtcNow
-        //                });
-        //            }
+            if (todo == null)
+            {
+                return NotFound(new ErrorResponse
+                {
+                    StatusCode = 404,
+                    Message = $"TODO with ID {id} not found",
+                    Timestamp = DateTime.UtcNow
+                });
+            }
 
-        //            todo.Title = dto.Title;
-        //            todo.Description = dto.Description;
-        //            todo.IsCompleted = dto.IsCompleted;
-        //            todo.DueDate = dto.DueDate;
-        //            todo.Priority = dto.Priority ?? "Medium";
+            todo.Title = dto.Title;
+            todo.Description = dto.Description;
+            todo.IsCompleted = dto.IsCompleted;
+            todo.DueDate = dto.DueDate;
+            todo.Priority = dto.Priority ?? "Medium";
 
-        //            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
 
-        //            var response = new TodoResponseDto
-        //            {
-        //                Id = todo.Id,
-        //                Title = todo.Title,
-        //                Description = todo.Description,
-        //                IsCompleted = todo.IsCompleted,
-        //                CreatedAt = todo.CreatedAt,
-        //                DueDate = todo.DueDate,
-        //                Priority = todo.Priority
-        //            };
+            var response = new TodoResponseDto
+            {
+                Id = todo.Id,
+                Title = todo.Title,
+                Description = todo.Description,
+                IsCompleted = todo.IsCompleted,
+                CreatedAt = todo.CreatedAt,
+                DueDate = todo.DueDate,
+                Priority = todo.Priority
+            };
 
-        //            return Ok(response);
-        //        }
+            return Ok(response);
+        }
 
         //        [HttpDelete("{id}")]
         //        public async Task<ActionResult> DeleteTodo(int id)
