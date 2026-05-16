@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using TodoAPI.Data;
 using TodoAPI.DTOs;
 using TodoAPI.Models;
+using TodoAPI.Response;
 
 namespace TodoAPI.Controllers
 {
@@ -37,34 +38,34 @@ namespace TodoAPI.Controllers
         }
 
 
-        //        [HttpGet("{id}")]
-        //        public async Task<ActionResult<TodoResponseDto>> GetTodo(int id)
-        //        {
-        //            var todo = await _context.TodoItems.FindAsync(id);
+        [HttpGet("{id}")]
+        public async Task<ActionResult<TodoResponseDto>> GetTodo(int id)
+        {
+            var todo = await _context.TodoItems.FindAsync(id);
 
-        //            if (todo == null)
-        //            {
-        //                return NotFound(new ErrorResponse
-        //                {
-        //                    StatusCode = 404,
-        //                    Message = $"TODO with ID {id} not found",
-        //                    Timestamp = DateTime.UtcNow
-        //                });
-        //            }
+            if (todo == null)
+            {
+                return NotFound(new ErrorResponse
+                {
+                    StatusCode = 404,
+                    Message = $"TODO with ID {id} not found",
+                    Timestamp = DateTime.UtcNow
+                });
+            }
 
-        //            var response = new TodoResponseDto
-        //            {
-        //                Id = todo.Id,
-        //                Title = todo.Title,
-        //                Description = todo.Description,
-        //                IsCompleted = todo.IsCompleted,
-        //                CreatedAt = todo.CreatedAt,
-        //                DueDate = todo.DueDate,
-        //                Priority = todo.Priority
-        //            };
+            var response = new TodoResponseDto
+            {
+                Id = todo.Id,
+                Title = todo.Title,
+                Description = todo.Description,
+                IsCompleted = todo.IsCompleted,
+                CreatedAt = todo.CreatedAt,
+                DueDate = todo.DueDate,
+                Priority = todo.Priority
+            };
 
-        //            return Ok(response);
-        //        }
+            return Ok(response);
+        }
 
         //        [HttpPost]
         //public async Task<ActionResult<TodoResponseDto>> CreateTodo(CreateTodoDto dto)
